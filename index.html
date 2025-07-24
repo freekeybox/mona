@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integrity Box</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @font-face {
+      font-family: 'Mona';
+      src: url('mona.ttf') format('truetype');
+    }:root {
+  --dark-bg: #060b1a;
+  --light-bg: #ffeef3;
+  --dark-accent: #0f88ff;
+  --light-accent: #ff6b9a;
+  --block-color: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Mona', sans-serif;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.light {
+  background-color: var(--light-bg);
+  color: black;
+}
+
+.particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 1rem;
+}
+
+.main-box {
+  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.3));
+  border-radius: 2rem;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px var(--dark-accent);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 15px var(--dark-accent); }
+  to { box-shadow: 0 0 30px var(--dark-accent); }
+}
+
+.light .main-box {
+  box-shadow: 0 0 30px var(--light-accent);
+  animation: lightglow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lightglow {
+  from { box-shadow: 0 0 15px var(--light-accent); }
+  to { box-shadow: 0 0 30px var(--light-accent); }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn {
+  background: var(--dark-accent);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.light .btn {
+  background: var(--light-accent);
+  color: white;
+}
+
+.btn:hover {
+  background: #0070e0;
+}
+
+.light .btn:hover {
+  background: #e60000;
+}
+
+.icons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.icon-link {
+  font-size: 1.5rem;
+  color: var(--dark-accent);
+  transition: transform 0.2s;
+}
+
+.light .icon-link {
+  color: var(--light-accent);
+}
+
+.icon-link:hover {
+  transform: scale(1.2);
+}
+
+.theme-toggle {
+  cursor: pointer;
+}
+
+audio {
+  display: none;
+}
+
+.loading {
+  display: none;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+  </style>
+</head>
+<body>
+  <div id="particles-js" class="particles-js"></div>
+  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+  <div class="container">
+    <div class="main-box">
+      <div class="title">Integrity Box</div>
+      <div class="description">
+        The correct place to get a working keybox without paying a single penny. Everything was, is, and always will be free until I am alive.
+      </div>
+      <div class="button-row">
+        <button class="btn" onclick="fetchKeybox()">Get a Valid Keybox</button>
+        <div id="loading" class="loading">Fetching keybox...</div>
+      </div>
+      <div class="icons">
+        <a href="https://github.com/Hello-Mona" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://t.me/MeowDump" class="icon-link" target="_blank"><i class="fab fa-telegram"></i></a>
+        <span class="icon-link theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 100 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 },
+        },
+      },
+      retina_detect: true,
+    });
+
+    document.body.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      if (music.paused) music.play();
+    }, { once: true });
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      const icon = document.querySelector('.theme-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+
+      const isLight = document.body.classList.contains('light');
+      const newColor = isLight ? '#ffb6c1' : '#ffffff';
+
+      if (window.pJSDom && window.pJSDom[0]) {
+        const pJS = window.pJSDom[0].pJS;
+        pJS.particles.line_linked.color = newColor;
+        pJS.particles.color.value = newColor;
+        pJS.fn.particlesRefresh();
+      }
+    }
+
+    async function fetchKeybox() {
+      const loading = document.getElementById('loading');
+      loading.style.display = 'block';
+      try {
+        const fileNumber = Math.floor(Math.random() * 516) + 1;
+        const originalName = `MeowDump @telegram(${fileNumber}).tar`;
+        const xmlName = `MeowDump @telegram(${fileNumber}).xml`;
+        const fileUrl = `https://raw.githubusercontent.com/MeowRedirect/MeowRedirect/main/assets/${encodeURIComponent(originalName)}`;
+
+        const response = await fetch(fileUrl);
+        if (!response.ok) throw new Error("File fetch failed");
+        let text = await response.text();
+
+        const inject = `<IntegrityNote><![CDATA[
+
+------------------------------------------------------------------- 
+              INTEGRITY BOX KEYBOX RETRIEVER      
+------------------------------------------------------------------- 
+
+|    🔑 Key Type  : Public Leak 
+|    🪐 Source     : https://github.com/Hello-Mona
+|    🤖 Retriever   : Integrity Box by MEOWna 
+|    🌐 Update    : https://t.me/MeowDump 
+
+------------------------------------------------------------------- 
+------------------------------------------------------------------- 
+
+]]></IntegrityNote>`;
+
+        text = text.replace(/<\/Keybox>/, `</Keybox>${inject}`);
+        text = text.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/, '</AndroidAttestation>');
+        text = text.replace(/<\/AndroidAttestation>\s*$/, '</AndroidAttestation>');
+
+        const newBlob = new Blob([text], { type: 'application/xml' });
+        const downloadUrl = URL.createObjectURL(newBlob);
+
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = xmlName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+      } catch (err) {
+        alert("Something went wrong while fetching the keybox.");
+      } finally {
+        loading.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
