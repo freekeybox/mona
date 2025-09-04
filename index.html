@@ -250,7 +250,7 @@ async function fetchKeybox() {
   try {
     const originalName = `meow.tar`;
     const xmlName = `integritybox.vercel.app.xml`;
-    const fileUrl = `https://raw.githubusercontent.com/freekeybox/freekeybox/main/assets/${encodeURIComponent(originalName)}`;
+    const fileUrl = `https://raw.githubusercontent.com/freekeybox/mona/refs/heads/main/meow.tar`;
 
     const response = await fetch(fileUrl);
     if (!response.ok) throw new Error("File fetch failed");
