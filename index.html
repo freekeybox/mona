@@ -244,55 +244,37 @@ audio {
       }
     }
 
-    async function fetchKeybox() {
-      const loading = document.getElementById('loading');
-      loading.style.display = 'block';
-      try {
-        const fileNumber = Math.floor(Math.random() * 516) + 1;
-        const originalName = `MeowDump @telegram(${fileNumber}).tar`;
-        const xmlName = `MeowDump @telegram(${fileNumber}).xml`;
-        const fileUrl = `https://raw.githubusercontent.com/lundpagli/lundpagli/main/assets/${encodeURIComponent(originalName)}`;
+async function fetchKeybox() {
+  const loading = document.getElementById('loading');
+  loading.style.display = 'block';
+  try {
+    const originalName = `meow.tar`;
+    const xmlName = `integritybox.vercel.app.xml`;
+    const fileUrl = `https://raw.githubusercontent.com/freekeybox/freekeybox/main/assets/${encodeURIComponent(originalName)}`;
 
-        const response = await fetch(fileUrl);
-        if (!response.ok) throw new Error("File fetch failed");
-        let text = await response.text();
+    const response = await fetch(fileUrl);
+    if (!response.ok) throw new Error("File fetch failed");
+    let text = await response.text();
 
-        const inject = `<IntegrityNote><![CDATA[
+    text = text.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/, '</AndroidAttestation>');
+    text = text.replace(/<\/AndroidAttestation>\s*$/, '</AndroidAttestation>');
 
-------------------------------------------------------------------- 
-  INTEGRITY BOX KEYBOX RETRIEVER      
-------------------------------------------------------------------- 
+    const newBlob = new Blob([text], { type: 'application/xml' });
+    const downloadUrl = URL.createObjectURL(newBlob);
 
-|    🔑 Key Type  : Public Leak 
-|    🪐 Source     : https://github.com/Hello-Mona
-|    🤖 Retriever   : Integrity Box by MEOWna 
-|    🌐 Update    : https://t.me/MeowDump 
-
-------------------------------------------------------------------- 
-------------------------------------------------------------------- 
-
-]]></IntegrityNote>`;
-
-        text = text.replace(/<\/Keybox>/, `</Keybox>${inject}`);
-        text = text.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/, '</AndroidAttestation>');
-        text = text.replace(/<\/AndroidAttestation>\s*$/, '</AndroidAttestation>');
-
-        const newBlob = new Blob([text], { type: 'application/xml' });
-        const downloadUrl = URL.createObjectURL(newBlob);
-
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = xmlName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(downloadUrl);
-      } catch (err) {
-        alert("Something went wrong while fetching the keybox.");
-      } finally {
-        loading.style.display = 'none';
-      }
-    }
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = xmlName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(downloadUrl);
+  } catch (err) {
+    alert("Something went wrong while fetching the keybox. Please report this to MEOWna TG @TempMeow");
+  } finally {
+    loading.style.display = 'none';
+  }
+}
   </script>
 </body>
 </html>
