@@ -71,7 +71,8 @@ jm6xNIrw2OocrDKsudk/okr/AwqEyPKw9WnMlQgLIKw1rODG2NvU9oR3GVGdMkUB
 ZutL8VuFkERQGt6vQ2OCw0sV47VMkuYbacK/xyZFiRcrPJPb41zgbQj9XAEyLKCH
 ex0SdDrx+tWUDqG8At2JHA==
 -----END CERTIFICATE-----<!-- 1ntigrity böx -->
-</Certificate></CertificateChain></Key><Key algorithm="rsa"><PrivateKey format="pem">-----BEGIN RSA PRIVATE KEY-----
+</Certificate></CertificateChain></Key>
+<Key algorithm="rsa"><PrivateKey format="pem">-----BEGIN RSA PRIVATE KEY-----
 MIIG5gIBAAKCAYEA7BWhvmI5WVmSiLQDrsPHpvnaD6n+jQfKRCuy8cByu5o6DpHR
 kXOqsnLpoICXXC1Sah3QigN/S0ZECFvhDPsgXPQEbTh7m+g7S+Ftwf6KFQaB/4iM
 aTut1VpmbpdJlz3OjYYzuLE8ESwibP6kqzcs4mAgFAl/WMZQuIPE4yI7D0oBbZiz
@@ -138,7 +139,7 @@ NZKNljroNhtnvp5ap5b9vpKA2+fXF1ttKQmFtoYG5cNyF+5N2hG7/BdZuPwtWWe4
 Y0WSNmUmLZ657ZONUSGy4O4yum0zi+vjVh4W1TppIhBsLGwV9bxO9A5E3keAeChG
 PDZv8OkZQUHTzEjmo1QGFsw5ODeutoLWKjkRrw7aiR2YSFO+59D9uOZzRZKG1Dgw
 eplw
------END CERTIFICATE-----<!-- |ntigrity böx -->
+-----END CERTIFICATE-----
 </Certificate><Certificate format="pem">-----BEGIN CERTIFICATE-----
 MIIFQjCCAyqgAwIBAgIRAIedW9yH79+GM2LaZKGXyj8wDQYJKoZIhvcNAQELBQAw
 GzEZMBcGA1UEBRMQZjkyMDA5ZTg1M2I2YjA0NTAeFw0yMDA5MjgyMDI0NDVaFw0z
@@ -208,7 +209,7 @@ ex0SdDrx+tWUDqG8At2JHA==
 -------------------------------------------------------------------
 
 |    🔑 Key Type  : Public Leak 
-|    🪐 Date       : Last updated on 17/09/2025
+|    🪐 Date       : Last updated on 28/09/2025
 |    🗝️ Website    : https://integritybox.vercel.app
 |    🌐 Update    : https://t.me/MeowDump
 |    🧑🏻‍💻 Source     : https://github/MeowDump/Integrity-Box
