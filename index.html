@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,189 +9,228 @@
     @font-face {
       font-family: 'Mona';
       src: url('mona.ttf') format('truetype');
-    }:root {
-  --dark-bg: #060b1a;
-  --light-bg: #ffeef3;
-  --dark-accent: #0f88ff;
-  --light-accent: #ff6b9a;
-  --block-color: rgba(0, 0, 0, 0.5);
-}
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Mona', sans-serif;
-}
+    :root {
+      --dark-bg: #060b1a;
+      --light-bg: #ffeef3;
+      --dark-accent: #0f88ff;
+      --light-accent: #ff6b9a;
+    }
 
-body {
-  background-color: var(--dark-bg);
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Mona', sans-serif;
+    }
 
-.light {
-  background-color: var(--light-bg);
-  color: black;
-}
+    body {
+      background-color: var(--dark-bg);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-.particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
+    .light {
+      background-color: var(--light-bg);
+      color: black;
+    }
 
-.container {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 1rem;
-}
+    .particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-.main-box {
-  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.3));
-  border-radius: 2rem;
-  padding: 2rem;
-  max-width: 500px;
-  width: 90%;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px var(--dark-accent);
-  animation: glow 3s ease-in-out infinite alternate;
-}
+    .container {
+      position: relative;
+      z-index: 1;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 1rem;
+    }
 
-@keyframes glow {
-  from { box-shadow: 0 0 15px var(--dark-accent); }
-  to { box-shadow: 0 0 30px var(--dark-accent); }
-}
+    .main-box {
+      background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.3));
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px var(--dark-accent);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
 
-.light .main-box {
-  box-shadow: 0 0 30px var(--light-accent);
-  animation: lightglow 3s ease-in-out infinite alternate;
-}
+    @keyframes glow {
+      from { box-shadow: 0 0 15px var(--dark-accent); }
+      to { box-shadow: 0 0 30px var(--dark-accent); }
+    }
 
-@keyframes lightglow {
-  from { box-shadow: 0 0 15px var(--light-accent); }
-  to { box-shadow: 0 0 30px var(--light-accent); }
-}
+    .light .main-box {
+      box-shadow: 0 0 30px var(--light-accent);
+      animation: lightglow 3s ease-in-out infinite alternate;
+    }
 
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
+    @keyframes lightglow {
+      from { box-shadow: 0 0 15px var(--light-accent); }
+      to { box-shadow: 0 0 30px var(--light-accent); }
+    }
 
-.description {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
 
-.button-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+    .description {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
 
-.btn {
-  background: var(--dark-accent);
-  border: none;
-  padding: 0.8rem 1.5rem;
-  color: white;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    .btn {
+      background: var(--dark-accent);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      color: white;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-.light .btn {
-  background: var(--light-accent);
-  color: white;
-}
+    .light .btn {
+      background: var(--light-accent);
+      color: white;
+    }
 
-.btn:hover {
-  background: #0070e0;
-}
+    .btn:hover {
+      background: #0070e0;
+    }
 
-.light .btn:hover {
-  background: #e60000;
-}
+    .light .btn:hover {
+      background: #e60000;
+    }
 
-.icons {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
+    .loading {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #fff;
+    }
 
-.icon-link {
-  font-size: 1.5rem;
-  color: var(--dark-accent);
-  transition: transform 0.2s;
-}
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeIn 1s ease;
+    }
 
-.light .icon-link {
-  color: var(--light-accent);
-}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-.icon-link:hover {
-  transform: scale(1.2);
-}
+    .popup-box {
+      background: #111;
+      color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 700px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 0 20px var(--dark-accent);
+    }
 
-.theme-toggle {
-  cursor: pointer;
-}
+    .popup-box input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
 
-audio {
-  display: none;
-}
+    .popup-box label {
+      display: block;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
 
-.loading {
-  display: none;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
+    .popup-box button {
+      margin-top: 1rem;
+      width: 100%;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
   <div id="particles-js" class="particles-js"></div>
   <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
+  <div id="popup-modal" class="popup-overlay">
+    <div class="popup-box">
+      <h2>⚠️ Beware of Keybox Hub Scam</h2>
+      <div style="max-height: 300px; overflow-y: auto; text-align: left; font-size: 0.95rem; line-height: 1.5;">
+        <p>I keep getting messages asking if I sell keyboxes. Let me be absolutely clear: <strong>I do not sell keyboxes</strong>, and I forbid anyone from selling them.</p>
+        <p>‎ </p>
+        <p><strong>Stop wasting money bro,</strong> keyboxes are not private, no sellers can build a keybox, and anyone who says otherwise is lying.<strong> Here’s the scam in plain language:</strong> A seller who has one keybox will tell every buyer it’s private. Then the same keybox gets sold to multiple people while each buyer is told “this is private” <strong>that’s the scam, plain and simple</strong> </p>
+        <p>‎ </p>
+        <p>If a keybox were truly private (used only by you), it would never be revoked. They get revoked because they’re re-shared and abused. Buying one is buying a ticking time bomb, you’ll lose access eventually and the seller will vanish with your cash</p>
+        <p>‎ </p>
+        <p>There’s a known scammer YIGIT running a ChatGPT-coded site (keyboxhub) that hands out “free” keyboxes as bait. don’t be stupid. His real intention is to sell paid subscription keyboxes. Reading his terms and conditions is enough to make anyone laugh. Honestly, who even writes such pathetic nonsense? if you fall for that, you’re funding a scammer, not getting anything valuable</p>
+        <p>‎ </p>
+        <p>My module and website exist for one reason: to make keyboxes so readily available that no one ever needs to buy them. I built this to protect people, and I’ve successfully disrupted multiple scam operations in the process and Yes, you can pass strong Integrity without a keybox. some ROMs and Play Integrity Fix module use spoofed props or a spoof provider to pass Strong Integrity. that can break apps like Google Wallet, but on a modified OS most apps still work and root is usually enough for daily use</p>
+        <p>‎ </p>
+        <p>When i created integritybox.vercel.app he messeged me personally saying i shouldn't create that vercel webpage, and suggested me to grab the keybox from his chatgpt coded site which steals keybox from users in the name of keybox checker in his site. I was busy so didn't replied, but i took a screenshot of the chat knowing it'll be useful for me someday, and guess what, he deleted the entire chat lmao🤣 </p>
+        <p>‎ </p>
+        <p>After that he started suggesting everyone to report this page because I'm ruining his subscription based business by providing stuff for free. MF was so pissed off😭🙏 </p>
+        <p>‎ </p>
+        <p>Final word: do not buy keyboxes. they’re publicly available, free, or unnecessary. don’t trust sellers, don’t fall for “private” keybox claims, and don’t feed subscription scams. If you see someone selling keyboxes or pushing paid “private” ones, report them to the platform, block them, and warn others</p>
+        <p>‎ </p>
+        <p><strong>Question:</strong> Who is the keybox scammer?</p>
+      </div>
+      <input type="text" id="passkey-input" placeholder="Enter answer to unlock..." autocomplete="off" />
+      <label><input type="checkbox" id="dont-show-again" /> Don’t ask again</label>
+      <button class="btn" onclick="validatePasskey()">Unlock</button>
+    </div>
+  </div>
+
   <div class="container">
     <div class="main-box">
       <div class="title">Integrity Box</div>
       <div class="description">
-        The correct place to get a working keybox without paying a single penny. Everything was, is, and always will be free until I am alive.<br>
-        ‎ <br>
-        There are people out there embedding keybox checkers on their sites just to steal your keybox and sell it back to you as part of some shady subscription.<br>
-        ‎ <br>
-         <br>
-        Private keybox is a myth, don't fall for scams.<br>
+        The correct place to get a working keybox without paying a single penny.<br><br>
         <strong>𝗡𝗘𝗩𝗘𝗥 𝗕𝗨𝗬 𝗔 𝗞𝗘𝗬𝗕𝗢𝗫</strong>
       </div>
       <div class="button-row">
         <button class="btn" onclick="fetchKeybox()">Get a Valid Keybox</button>
         <div id="loading" class="loading">Fetching keybox...</div>
       </div>
-      <div class="icons">
-        <a href="https://github.com/Hello-Mona" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://t.me/MeowDump" class="icon-link" target="_blank"><i class="fab fa-telegram"></i></a>
-        <span class="icon-link theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></span>
-      </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
+    // Particle background
     particlesJS('particles-js', {
       particles: {
         number: { value: 100 },
@@ -208,10 +248,6 @@ audio {
         move: {
           enable: true,
           speed: 2,
-          direction: "none",
-          random: false,
-          straight: false,
-          out_mode: "out",
         },
       },
       interactivity: {
@@ -228,59 +264,73 @@ audio {
       retina_detect: true,
     });
 
+    // Unlock logic
+    const validAnswers = ["yigit", "keyboxhub", "keybox hub"];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('popup-modal');
+      const content = document.querySelector('.container');
+
+      if (localStorage.getItem('passkeyCorrect')) {
+        modal.style.display = 'none';
+        content.style.display = 'flex';
+      }
+    });
+
+    function validatePasskey() {
+      const input = document.getElementById('passkey-input').value.trim().toLowerCase();
+      const modal = document.getElementById('popup-modal');
+      const content = document.querySelector('.container');
+      const checkbox = document.getElementById('dont-show-again');
+
+      if (validAnswers.includes(input)) {
+        if (checkbox.checked) {
+          localStorage.setItem('passkeyCorrect', 'true');
+        }
+        modal.style.display = 'none';
+        content.style.display = 'flex';
+      } else {
+        alert("Wrong answer. Read the message carefully and try again.");
+      }
+    }
+
+    // Force music play on first interaction
     document.body.addEventListener('click', () => {
       const music = document.getElementById('bg-music');
       if (music.paused) music.play();
     }, { once: true });
 
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-      const icon = document.querySelector('.theme-toggle i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
+    async function fetchKeybox() {
+      const loading = document.getElementById('loading');
+      loading.style.display = 'block';
+      try {
+        const xmlName = `integritybox.vercel.app.xml`;
+        const fileUrl = `https://raw.githubusercontent.com/freekeybox/mona/refs/heads/main/meow.tar`;
 
-      const isLight = document.body.classList.contains('light');
-      const newColor = isLight ? '#ffb6c1' : '#ffffff';
+        const response = await fetch(fileUrl);
+        if (!response.ok) throw new Error("File fetch failed");
 
-      if (window.pJSDom && window.pJSDom[0]) {
-        const pJS = window.pJSDom[0].pJS;
-        pJS.particles.line_linked.color = newColor;
-        pJS.particles.color.value = newColor;
-        pJS.fn.particlesRefresh();
+        let text = await response.text();
+
+        text = text.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/, '</AndroidAttestation>');
+        text = text.replace(/<\/AndroidAttestation>\s*$/, '</AndroidAttestation>');
+
+        const newBlob = new Blob([text], { type: 'application/xml' });
+        const downloadUrl = URL.createObjectURL(newBlob);
+
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = xmlName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+      } catch (err) {
+        alert("Something went wrong while fetching the keybox. Please report this to MEOWna TG @TempMeow");
+      } finally {
+        loading.style.display = 'none';
       }
     }
-
-async function fetchKeybox() {
-  const loading = document.getElementById('loading');
-  loading.style.display = 'block';
-  try {
-    const originalName = `meow.tar`;
-    const xmlName = `integritybox.vercel.app.xml`;
-    const fileUrl = `https://raw.githubusercontent.com/freekeybox/mona/refs/heads/main/meow.tar`;
-
-    const response = await fetch(fileUrl);
-    if (!response.ok) throw new Error("File fetch failed");
-    let text = await response.text();
-
-    text = text.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/, '</AndroidAttestation>');
-    text = text.replace(/<\/AndroidAttestation>\s*$/, '</AndroidAttestation>');
-
-    const newBlob = new Blob([text], { type: 'application/xml' });
-    const downloadUrl = URL.createObjectURL(newBlob);
-
-    const a = document.createElement('a');
-    a.href = downloadUrl;
-    a.download = xmlName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(downloadUrl);
-  } catch (err) {
-    alert("Something went wrong while fetching the keybox. Please report this to MEOWna TG @TempMeow");
-  } finally {
-    loading.style.display = 'none';
-  }
-}
   </script>
 </body>
 </html>
