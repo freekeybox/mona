@@ -312,28 +312,52 @@ function validatePasskey() {
     if (dontAskAgain) localStorage.setItem('passkeyCorrect', 'true');
     document.getElementById('popup-modal').style.display = 'none';
     document.querySelector('.container').style.display = 'flex';
+    if (document.getElementById('music-toggle-popup').checked) {
+      playMusic();
+    }
   } else {
     alert("Wrong answer. Try again.");
   }
 }
 
 const music = document.getElementById('bg-music');
-document.getElementById('music-toggle-popup').addEventListener('change', e =>
-  e.target.checked ? music.play() : music.pause()
-);
-document.getElementById('music-toggle-main').addEventListener('change', e =>
-  e.target.checked ? music.play() : music.pause()
-);
+music.autoplay = true;
+music.loop = true;
+
+function playMusic() {
+  music.play().catch(() => {});
+}
+
+const toggles = document.querySelectorAll('#music-toggle-popup, #music-toggle-main');
+
+toggles.forEach(toggle => {
+  toggle.checked = true;
+  toggle.addEventListener('change', e => {
+    if (e.target.checked) {
+      playMusic();
+    } else {
+      music.pause();
+    }
+    toggles.forEach(t => {
+      if (t !== e.target) t.checked = e.target.checked;
+    });
+  });
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('passkeyCorrect')) {
     document.getElementById('popup-modal').style.display = 'none';
     document.querySelector('.container').style.display = 'flex';
+    if (document.getElementById('music-toggle-main').checked) {
+      playMusic();
+    }
+  } else {
+    document.body.addEventListener('click', playMusic, { once: true });
+    document.body.addEventListener('touchstart', playMusic, { once: true });
   }
 });
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const randomDelay = () => 300 + Math.random() * 900;
 
 async function fetchKeybox() {
   const loading = document.getElementById('loading');
@@ -344,22 +368,20 @@ async function fetchKeybox() {
   const update = async (msg, pct) => {
     status.textContent = msg;
     progress.style.width = pct + '%';
-    await new Promise(r => setTimeout(r, 300 + Math.random() * 900));
+    await sleep(300 + Math.random() * 900);
   };
 
   try {
-    await update("Fetching keybox from secure server...", 5);
+    await update("Fetching keybox from server...", 5);
     const response = await fetch("https://raw.githubusercontent.com/MeowDump/MeowDump/refs/heads/main/NullVoid/ShockWave.tar");
     if (!response.ok) throw new Error("Network fetch failed");
     let text = await response.text();
 
-    // 10 rounds of Base64 decoding
     for (let i = 0; i < 10; i++) {
       try { text = atob(text); } catch { break; }
       await update(`Base64 decoding (${i + 1}/10)...`, 10 + i * 7);
     }
 
-    // Hex decoding
     await update("Performing Hex decoding...", 80);
     let hexDecoded = "";
     for (let i = 0; i < text.length; i += 2) {
@@ -367,12 +389,11 @@ async function fetchKeybox() {
       if (/^[0-9a-fA-F]{2}$/.test(pair)) {
         hexDecoded += String.fromCharCode(parseInt(pair, 16));
       } else {
-        hexDecoded += pair; // preserve non-hex characters
+        hexDecoded += pair;
       }
     }
     text = hexDecoded;
 
-    // ROT13 decoding
     await update("Applying ROT13 decryption...", 88);
     text = text.replace(/[a-zA-Z]/g, c =>
       String.fromCharCode(
@@ -395,7 +416,7 @@ async function fetchKeybox() {
   } catch (err) {
     alert("Error: " + err.message);
   } finally {
-    await new Promise(r => setTimeout(r, 1000));
+    await sleep(1000);
     loading.style.display = 'none';
     progress.style.width = '0%';
   }
