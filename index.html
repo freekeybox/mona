@@ -1,426 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Made with❤️by 𝗠𝗘𝗢𝗪𝗻𝗮 💅</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 <style>
-@font-face {
-  font-family: 'Mona';
-  src: url('mona.ttf') format('truetype');
+@font-face { font-family:'Mona'; src:url('mona.ttf') format('truetype'); }
+:root {
+  --light-bg:#ffeef3; --dark-bg:#060b1a;
+  --light-accent:#ff6b9a; --dark-accent:#0f88ff;
+  --light-text:#000; --dark-text:#fff;
 }
-
-body {
-  background: radial-gradient(circle at top, #07132d, #02040a);
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-  font-family: 'Mona', sans-serif;
-}
-
-.top-bar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 10;
-}
-
-.social-icons a {
-  color: white;
-  font-size: 1.4rem;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.social-icons a:hover {
-  color: #0f88ff;
-  transform: scale(1.15);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 28px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  border-radius: 34px;
-  transition: 0.4s;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #0f88ff;
-  box-shadow: 0 0 10px #0f88ff;
-}
-
-input:checked + .slider:before {
-  transform: translateX(22px);
-}
-
-.container {
-  position: relative;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 1rem;
-}
-
-.main-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2rem;
-  padding: 2rem;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 0 30px #0f88ff66;
-  animation: glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0% { box-shadow: 0 0 10px #0f88ff33; }
-  50% { box-shadow: 0 0 30px #0f88ffaa; }
-  100% { box-shadow: 0 0 10px #0f88ff33; }
-}
-
-.btn {
-  background: #0f88ff;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  color: white;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn:hover {
-  background: #0070e0;
-  transform: scale(1.05);
-}
-
-.loading {
-  margin-top: 1rem;
-  color: white;
-  display: none;
-  text-align: center;
-}
-
-.loader {
-  border: 4px solid rgba(255, 255, 255, 0.15);
-  border-top: 4px solid #00b3ff;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  animation: spin 1s linear infinite;
-  margin: 1rem auto;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 15px;
-}
-
-.progress {
-  height: 100%;
-  background: linear-gradient(90deg, #00b3ff, #0070e0);
-  width: 0%;
-  box-shadow: 0 0 20px #0f88ff, 0 0 40px #0f88ff66;
-  transition: width 0.6s ease;
-  animation: pulseGlow 1.5s infinite alternate;
-}
-
-@keyframes pulseGlow {
-  from { box-shadow: 0 0 10px #00b3ff55; }
-  to { box-shadow: 0 0 35px #00b3ffaa, 0 0 55px #00b3ff88; }
-}
-
-.decode-text {
-  animation: shimmer 2s infinite linear;
-  background: linear-gradient(to right, #00b3ff 0%, #ffffff 50%, #00b3ff 100%);
-  -webkit-background-clip: text;
-  color: transparent;
-  background-size: 200% auto;
-}
-
-@keyframes shimmer {
-  to { background-position: 200% center; }
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.popup-box {
-  background: #111;
-  color: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  max-width: 700px;
-  width: 90%;
-  box-shadow: 0 0 20px #0f88ff;
-  overflow-y: auto;
-  max-height: 90vh;
-}
-
-.popup-box input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.popup-box button {
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.main-top-bar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  z-index: 10;
-}
+body{margin:0;font-family:'Mona',sans-serif;transition:0.3s;background:var(--light-bg);color:var(--light-text);}
+.light{background:var(--light-bg);color:var(--light-text);}
+.dark{background:var(--dark-bg);color:var(--dark-text);}
+.title,.description{transition:0.3s;text-align:center;}
+.light .title,.light .description{color:var(--light-accent);}
+.dark .title,.dark .description{color:var(--dark-text);}
+#particles-js{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+.container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:1rem;}
+.main-box{border-radius:2rem;padding:3rem;max-width:600px;width:95%;transition:0.3s;background:rgba(255,255,255,0.7);box-shadow:0 0 30px var(--light-accent);}
+.dark .main-box{background:rgba(6,11,26,0.85);box-shadow:0 0 30px var(--dark-accent);}
+.title{font-size:2.5rem;font-weight:bold;margin-bottom:1rem;}
+.description{font-size:1.1rem;margin-bottom:2rem;}
+.buttons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;}
+.btn{border:none;padding:1.5rem;color:white;font-size:1rem;border-radius:2rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3rem;transition:0.3s;}
+.light .btn{background:var(--light-accent);}
+.dark .btn{background:var(--dark-accent);}
+.btn:hover{transform:scale(1.05);}
+.material-symbols-rounded{font-size:50px;display:block;}
+.icons{margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;align-items:center;font-size:2rem;}
+.icon-link{cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:28px;transition:0.3s;}
+.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.95);display:flex;justify-content:center;align-items:center;z-index:1000;transition:0.3s;}
+.dark .popup-overlay{background:rgba(6,11,26,0.95);color:#fff;}
+.popup-box{background:#fff;padding:2rem;border-radius:2rem;max-width:600px;width:90%;text-align:left;box-shadow:0 0 20px #ff6b9a66;transition:0.3s;color:#000;}
+.dark .popup-box{background:#111;color:#fff;box-shadow:0 0 20px #0f88ff66;}
+.popup-box button{margin-top:1rem;width:100%;padding:0.8rem;border:none;border-radius:2rem;background-color:var(--light-accent);color:white;font-size:1rem;cursor:pointer;transition:0.3s;}
+.dark .popup-box button{background-color:var(--dark-accent);}
+.popup-box button:hover{opacity:0.85;}
+.music-playing{animation:musicGlow 1.2s ease-in-out infinite alternate;}
+@keyframes musicGlow{0%{text-shadow:0 0 5px #ff6b9a;}50%{text-shadow:0 0 15px #ff6b9a;}100%{text-shadow:0 0 5px #ff6b9a;}}
+.loading{display:none;margin-top:1rem;}
+.loader{border:4px solid rgba(255,255,255,0.1);border-top:4px solid var(--light-accent);border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;margin:auto;}
+.dark .loader{border-top:4px solid var(--dark-accent);}
+@keyframes spin{to{transform:rotate(360deg);}}
+#decode-status{margin-top:0.5rem;text-align:center;font-size:0.95rem;}
 </style>
 </head>
-<body>
+<body class="light">
+<div id="particles-js"></div>
 <audio id="bg-music" src="music.mp3" autoplay loop></audio>
 
-<!-- Popup Modal -->
-<div id="popup-modal" class="popup-overlay">
+<div id="terms-modal" class="popup-overlay">
   <div class="popup-box">
     <h2>⚠️ Beware of Keybox Hub Scam</h2>
         <p>I keep getting messages asking if I sell keyboxes. Let me be absolutely clear: <strong>I do not sell keyboxes</strong>, and I forbid anyone from selling them.</p>
         <p><strong>Stop wasting money bro,</strong> keyboxes are not private, no sellers can build a keybox, and anyone who says otherwise is lying.<strong> Here’s the scam in plain language:</strong> A seller who has one keybox will tell every buyer it’s private. Then the same keybox gets sold to multiple people while each buyer is told “this is private” <strong>that’s the scam, plain and simple</strong> </p>
         <p>If a keybox were truly private (used only by you), it would never be revoked. They get revoked because they’re re-shared and abused. Buying one is buying a ticking time bomb, you’ll lose access eventually and the seller will vanish with your cash</p>
         <p>There’s a known scammer <strong>YIGIT</strong> running a ChatGPT-coded site <strong>(keyboxhub)</strong> that hands out “free” keyboxes as bait. don’t be stupid. His real intention is to sell paid subscription keyboxes. Reading his terms and conditions is enough to make anyone laugh. Honestly, who even writes such pathetic nonsense? if you fall for that, you’re funding a scammer, not getting anything valuable</p>
-        <p>When i created integritybox.vercel.app he messeged me personally saying i shouldn't create that vercel webpage, and suggested me to grab the keybox from his chatgpt coded site which steals keybox from users in the name of keybox checker in his site. I was busy so didn't replied, but i took a screenshot of the chat knowing it'll be useful for me someday, and guess what, he deleted the entire chat lmao🤣 </p>
-        <p>After that he started suggesting everyone to report this page because I'm ruining his subscription based business by providing stuff for free. MF was so pissed off😭🙏 </p>
-        <p>Conclusion: Do not buy keyboxes. they’re publicly available, free, or unnecessary. don’t trust sellers, don’t fall for “private” keybox claims, and don’t feed subscription scams. If you see someone selling keyboxes or pushing paid “private” ones, report them to the platform, block them, and warn others</p>
-        <p><strong>Question:</strong> Who is the keybox scammer?</p>
-    <input type="text" id="passkey-input" placeholder="Enter answer to unlock..." />
-    
-    <p id="dont-ask-text" style="cursor: pointer; color: white;" onclick="toggleDontAskAgain(this)">
-      Don’t ask again
-    </p>
-
-    <button class="btn" onclick="validatePasskey()">Unlock</button>
-
-    <div class="top-bar" style="margin-top: 10px;">
-      <div class="social-icons">
-        <a href="https://github.com/MeowDump" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://t.me/IntegrityBox" target="_blank"><i class="fab fa-telegram"></i></a>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="music-toggle-popup" checked>
-        <span class="slider"></span>
-      </label>
-    </div>
+        <p>Conclusion: Do not buy keyboxes. they’re publicly available, free, or unnecessary. don’t trust sellers, don’t fall for “private” keybox claims, and don’t feed subscription scams</p>
+    <button onclick="closeTerms()">Thanks</button>
   </div>
 </div>
 
-<!-- Main Page -->
 <div class="container">
   <div class="main-box">
-    <h2>Integrity Box</h2>
-    <p>The correct place to get a working keybox without paying a single penny.</p>
-    <button class="btn" onclick="fetchKeybox()">Get a Valid Keybox</button>
-    <div id="loading" class="loading">
-      <div class="loader"></div>
-      <div id="decode-status" class="decode-text">Starting...</div>
-      <div class="progress-bar"><div id="progress" class="progress"></div></div>
+    <div class="title">Integrity Box</div>
+    <div class="description">scammer's worst nightmare ;)</div>
+    <div class="buttons-grid">
+      <button class="btn" onclick="fetchKeybox()"><span class="material-symbols-rounded">vpn_key</span>Keybox.xml</button>
+      <button class="btn" onclick="downloadFile('meow.json')"><span class="material-symbols-rounded">file_download</span>PIF.json</button>
+      <button class="btn" onclick="downloadFile('HMAL_Config.json')"><span class="material-symbols-rounded">settings_suggest</span>HMA Config</button>
     </div>
-
-    <!-- Buttons on Main Page -->
-    <div class="main-top-bar">
-      <div class="social-icons">
-        <a href="https://github.com/MeowDump" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://t.me/TempMeow" target="_blank"><i class="fab fa-telegram"></i></a>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="music-toggle-main" checked>
-        <span class="slider"></span>
-      </label>
+    <div id="loading" class="loading"><div class="loader"></div><div id="decode-status">Starting...</div></div>
+    <div class="icons">
+      <span class="icon-link" onclick="window.open('https://github.com/MeowDump','_blank')"><span class="material-symbols-rounded" id="github-icon">code</span></span>
+      <span class="icon-link" onclick="window.open('https://t.me/IntegrityBox','_blank')"><span class="material-symbols-rounded" id="telegram-icon">send</span></span>
+      <span class="icon-link theme-toggle" onclick="toggleTheme()"><span class="material-symbols-rounded" id="theme-icon">dark_mode</span></span>
+      <span class="icon-link music-toggle" onclick="toggleMusic()"><span class="material-symbols-rounded" id="music-icon">music_note</span></span>
     </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-let dontAskAgain = false;
-
-function toggleDontAskAgain(el) {
-  dontAskAgain = !dontAskAgain;
-  el.style.color = dontAskAgain ? '#0f88ff' : 'white';
-}
-
-const validAnswers = ["yigit", "keyboxhub", "tryigit", "keybox hub"];
-
-function validatePasskey() {
-  const input = document.getElementById('passkey-input').value.trim().toLowerCase();
-  if (validAnswers.includes(input)) {
-    if (dontAskAgain) localStorage.setItem('passkeyCorrect', 'true');
-    document.getElementById('popup-modal').style.display = 'none';
-    document.querySelector('.container').style.display = 'flex';
-    if (document.getElementById('music-toggle-popup').checked) {
-      playMusic();
-    }
-  } else {
-    alert("Wrong answer. Try again.");
-  }
-}
-
-const music = document.getElementById('bg-music');
-music.autoplay = true;
-music.loop = true;
-
-function playMusic() {
-  music.play().catch(() => {});
-}
-
-const toggles = document.querySelectorAll('#music-toggle-popup, #music-toggle-main');
-
-toggles.forEach(toggle => {
-  toggle.checked = true;
-  toggle.addEventListener('change', e => {
-    if (e.target.checked) {
-      playMusic();
-    } else {
-      music.pause();
-    }
-    toggles.forEach(t => {
-      if (t !== e.target) t.checked = e.target.checked;
-    });
-  });
+const particlesConfig=(color)=>({
+  particles:{number:{value:100},color:{value:color},shape:{type:"circle"},opacity:{value:0.5},size:{value:3},
+  line_linked:{enable:true,distance:150,color:color,opacity:0.4,width:1},move:{enable:true,speed:2}},
+  interactivity:{detect_on:"canvas",events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},
+  modes:{repulse:{distance:100},push:{particles_nb:4}}},retina_detect:true
 });
+let pjsInstance;
+function initParticles(){
+  pjsInstance=particlesJS('particles-js',particlesConfig('#ff6b9a'));
+}
+initParticles();
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('passkeyCorrect')) {
-    document.getElementById('popup-modal').style.display = 'none';
-    document.querySelector('.container').style.display = 'flex';
-    if (document.getElementById('music-toggle-main').checked) {
-      playMusic();
-    }
-  } else {
-    document.body.addEventListener('click', playMusic, { once: true });
-    document.body.addEventListener('touchstart', playMusic, { once: true });
-  }
-});
+const music=document.getElementById('bg-music'); 
+const musicIcon=document.getElementById('music-icon');
+const githubIcon=document.getElementById('github-icon');
+const telegramIcon=document.getElementById('telegram-icon');
+const themeIcon=document.getElementById('theme-icon');
+const decodeStatus=document.getElementById('decode-status');
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+function updateIconsAndParticles(){
+  const isLight=document.body.classList.contains('light');
+  githubIcon.style.color=isLight?'#ff6b9a':'#0f88ff';
+  telegramIcon.style.color=isLight?'#ff6b9a':'#0f88ff';
+  musicIcon.style.color=isLight?'#ff6b9a':'#0f88ff';
+  themeIcon.style.color=isLight?'#ff6b9a':'#0f88ff';
+  particlesJS('particles-js', particlesConfig(isLight?'#ff6b9a':'#ffffff'));
+}
 
-async function fetchKeybox() {
-  const loading = document.getElementById('loading');
-  const status = document.getElementById('decode-status');
-  const progress = document.getElementById('progress');
-  loading.style.display = 'block';
+function toggleMusic(){
+  if(music.paused){ music.play(); musicIcon.textContent='music_note'; musicIcon.classList.add('music-playing'); } 
+  else { music.pause(); musicIcon.textContent='music_off'; musicIcon.classList.remove('music-playing'); }
+  updateIconsAndParticles();
+}
 
-  const update = async (msg, pct) => {
-    status.textContent = msg;
-    progress.style.width = pct + '%';
-    await sleep(300 + Math.random() * 900);
+function toggleTheme(){
+  document.body.classList.toggle('dark'); document.body.classList.toggle('light');
+  themeIcon.textContent=document.body.classList.contains('light')?'dark_mode':'light_mode';
+  updateIconsAndParticles();
+}
+
+function closeTerms(){document.getElementById('terms-modal').style.display='none'; updateIconsAndParticles();}
+
+async function downloadFile(name){
+  const urls = {
+    "meow.json":"https://raw.githubusercontent.com/MeowDump/Integrity-Box/refs/heads/main/toolbox/meow.json",
+    "HMAL_Config.json":"https://raw.githubusercontent.com/MeowDump/Integrity-Box/refs/heads/main/toolbox/HMAL_Config.json"
   };
+  const url = urls[name]; 
+  try{ const response = await fetch(url); const text = await response.text(); const blob = new Blob([text],{type:"application/json"}); const link=document.createElement("a"); link.href=URL.createObjectURL(blob); link.download=name; document.body.appendChild(link); link.click(); link.remove(); }
+  catch(err){alert("Download failed: "+err);}
+}
 
-  try {
-    await update("Fetching keybox from server...", 5);
-    const response = await fetch("https://raw.githubusercontent.com/MeowDump/MeowDump/refs/heads/main/NullVoid/ShockWave.tar");
-    if (!response.ok) throw new Error("Network fetch failed");
-    let text = await response.text();
-
-    for (let i = 0; i < 10; i++) {
-      try { text = atob(text); } catch { break; }
-      await update(`Base64 decoding (${i + 1}/10)...`, 10 + i * 7);
-    }
-
-    await update("Performing Hex decoding...", 80);
-    let hexDecoded = "";
-    for (let i = 0; i < text.length; i += 2) {
-      const pair = text.substr(i, 2);
-      if (/^[0-9a-fA-F]{2}$/.test(pair)) {
-        hexDecoded += String.fromCharCode(parseInt(pair, 16));
-      } else {
-        hexDecoded += pair;
-      }
-    }
-    text = hexDecoded;
-
-    await update("Applying ROT13 decryption...", 88);
-    text = text.replace(/[a-zA-Z]/g, c =>
-      String.fromCharCode(
-        (c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13)) ? c : c - 26
-      )
-    );
-
-    await update("Finalizing XML output...", 98);
-
-    const blob = new Blob([text], { type: 'application/xml' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = "Telegram @IntegrityBox.xml";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    await update("Keybox successfully decoded!", 100);
-
-  } catch (err) {
-    alert("Error: " + err.message);
-  } finally {
-    await sleep(1000);
-    loading.style.display = 'none';
-    progress.style.width = '0%';
-  }
+const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const randomDelay=()=>75+Math.random()*100;
+async function fetchKeybox(){
+  const loading=document.getElementById('loading'); loading.style.display='block';
+  decodeStatus.textContent="Fetching keybox from secure server...";
+  try{
+    const response=await fetch("https://raw.githubusercontent.com/MeowDump/MeowDump/refs/heads/main/NullVoid/ShockWave.tar");
+    if(!response.ok) throw new Error("Network fetch failed"); let text=await response.text();
+    for(let i=0;i<10;i++){try{text=atob(text);}catch{break;} decodeStatus.textContent=`Decoding (${i+1}/10)...`; await sleep(randomDelay());}
+    decodeStatus.textContent="Performing Hex decoding..."; text=text.replace(/[^0-9a-fA-F]/g,""); let hexDecoded=""; for(let i=0;i<text.length;i+=2) hexDecoded+=String.fromCharCode(parseInt(text.substr(i,2),16));
+    decodeStatus.textContent="Applying ROT13 decryption..."; let result=hexDecoded.replace(/[a-zA-Z]/g,c=>String.fromCharCode(c.charCodeAt(0)+(c.toLowerCase()<'n'?13:-13)));
+    decodeStatus.textContent="Cleaning forbidden words..."; const badWords=["Words","Can","Describe","The","Human","Race"]; result=result.replace(new RegExp(`\\b(${badWords.join('|')})\\b`,'gi'),'');
+    decodeStatus.textContent="Finalizing XML output..."; result=result.replace(/<\/AndroidAttestation>\s*<\/AndroidAttestation>/g,'</AndroidAttestation>');
+    decodeStatus.textContent="Keybox successfully decrypted!"; const blob=new Blob([result],{type:'application/xml'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="integritybox2.vercel.app.xml"; document.body.appendChild(a); a.click(); a.remove();
+  }catch(err){alert("Error: "+err.message);}finally{await sleep(500); loading.style.display='none'; decodeStatus.textContent="";}
 }
 </script>
 </body>
 </html>
-
