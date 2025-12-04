@@ -20,12 +20,12 @@ body{margin:0;font-family:'Mona',sans-serif;transition:0.3s;background:var(--lig
 .dark .title,.dark .description{color:var(--dark-text);}
 #particles-js{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 .container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:1rem;}
-.main-box{border-radius:2rem;padding:3rem;max-width:450px;width:90%;transition:0.3s;background:rgba(255,255,255,0.7);box-shadow:0 0 30px var(--light-accent);}
-.dark .main-box{background:rgba(6,11,26,0.85);box-shadow:0 0 30px var(--dark-accent);}
-.title{font-size:2.5rem;font-weight:bold;margin-bottom:1rem;}
-.description{font-size:1.1rem;margin-bottom:2rem;}
-.buttons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;}
-.btn{border:none;padding:1.5rem;color:white;font-size:1rem;border-radius:2rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3rem;transition:0.3s;}
+.main-box{border-radius:2rem;padding:2rem;max-width:380px;width:90%;transition:0.3s;background:rgba(255,255,255,0.7);box-shadow:0 0 20px var(--light-accent);}
+.dark .main-box{background:rgba(6,11,26,0.85);box-shadow:0 0 20px var(--dark-accent);}
+.title{font-size:2rem;font-weight:bold;margin-bottom:0.8rem;}
+.description{font-size:1rem;margin-bottom:1.5rem;}
+.buttons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;}
+.btn{border:none;padding:1.2rem;color:white;font-size:0.9rem;border-radius:1.8rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3rem;transition:0.3s;}
 .light .btn{background:var(--light-accent);}
 .dark .btn{background:var(--dark-accent);}
 .btn:hover{transform:scale(1.05);}
@@ -54,12 +54,12 @@ body{margin:0;font-family:'Mona',sans-serif;transition:0.3s;background:var(--lig
 
 <div id="terms-modal" class="popup-overlay">
   <div class="popup-box">
-    <h2>⚠️ Beware of Keybox Hub Scam</h2>
-        <p>I keep getting messages asking if I sell keyboxes. Let me be absolutely clear: <strong>I do not sell keyboxes</strong>, and I forbid anyone from selling them.</p>
-        <p><strong>Stop wasting money bro,</strong> keyboxes are not private, no sellers can build a keybox, and anyone who says otherwise is lying.<strong> Here’s the scam in plain language:</strong> A seller who has one keybox will tell every buyer it’s private. Then the same keybox gets sold to multiple people while each buyer is told “this is private” <strong>that’s the scam, plain and simple</strong> </p>
-        <p>If a keybox were truly private (used only by you), it would never be revoked. They get revoked because they’re re-shared and abused. Buying one is buying a ticking time bomb, you’ll lose access eventually and the seller will vanish with your cash</p>
-        <p>There’s a known scammer <strong>YIGIT</strong> running a ChatGPT-coded site <strong>(keyboxhub)</strong> that hands out “free” keyboxes as bait. don’t be stupid. His real intention is to sell paid subscription keyboxes. Reading his terms and conditions is enough to make anyone laugh. Honestly, who even writes such pathetic nonsense? if you fall for that, you’re funding a scammer, not getting anything valuable</p>
-        <p>Conclusion: Do not buy keyboxes. they’re publicly available, free, or unnecessary. don’t trust sellers, don’t fall for “private” keybox claims, and don’t feed subscription scams</p>
+    <h2>⚠️ Beware of KeyboxHub Scam</h2>
+    <p>I keep getting messages asking if I sell keyboxes. Let me be absolutely clear: <strong>I do not sell keyboxes</strong>, and I forbid anyone from selling them.</p>
+    <p><strong>Stop wasting money bro,</strong> keyboxes are not private, no sellers can build a keybox, and anyone who says otherwise is lying.<strong> Here’s the scam in plain language:</strong> A seller who has one keybox will tell every buyer it’s private. Then the same keybox gets sold to multiple people while each buyer is told “this is private” <strong>that’s the scam, plain and simple</strong> </p>
+    <p>If a keybox were truly private (used only by you), it would never be revoked. They get revoked because they’re re-shared and abused. Buying one is buying a ticking time bomb, you’ll lose access eventually and the seller will vanish with your cash</p>
+    <p>There’s a known scammer <strong>YIGIT</strong> running a ChatGPT-coded site <strong>(keyboxhub)</strong> that hands out “free” keyboxes as bait. don’t be stupid. His real intention is to sell paid subscription keyboxes. Reading his terms and conditions is enough to make anyone laugh. Honestly, who even writes such pathetic nonsense? if you fall for that, you’re funding a scammer, not getting anything valuable</p>
+    <p>Conclusion: Do not buy keyboxes. they’re publicly available, free, or unnecessary. don’t trust sellers, don’t fall for “private” keybox claims, and don’t feed subscription scams</p>
     <button onclick="closeTerms()">Close</button>
   </div>
 </div>
@@ -91,10 +91,7 @@ const particlesConfig=(color)=>({
   interactivity:{detect_on:"canvas",events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},
   modes:{repulse:{distance:100},push:{particles_nb:4}}},retina_detect:true
 });
-let pjsInstance;
-function initParticles(){
-  pjsInstance=particlesJS('particles-js',particlesConfig('#ff6b9a'));
-}
+function initParticles(){particlesJS('particles-js',particlesConfig('#ff6b9a'));}
 initParticles();
 
 const music=document.getElementById('bg-music'); 
