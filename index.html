@@ -143,7 +143,7 @@ body{
 <body>
 
 <div id="particles-js"></div>
-<audio id="bg-music" src="music.mp3" loop></audio>
+<audio id="bg-music" src="music.mp3" loop muted></audio>
 
 <!-- NOTICE POPUP -->
 <div id="terms-modal" class="popup-overlay" style="display:none;">
@@ -190,7 +190,7 @@ body{
     </p>
 	
     <p>
-  This isn’t a mistake or bad luck; it’s exactly how this market works. Yigit and everyone else selling keyboxes are running the same scam: promising exclusive or private keyboxes, taking huge sums of money, and delivering nothing (because they don't have what they claim). Everyone is selling the same keybox to multiple buyers while pretending each is unique.
+  This isn’t a mistake or bad luck; it’s exactly how this market works. Yigit and everyone else selling keyboxes are running the same scam: promising exclusive or private keyboxes, taking huge sums of money, and delivering nothing (because the don't have what they claim). Everyone is selling the same keybox to multiple buyers while pretending each is unique.
     </p>
 	
     <p>
@@ -205,14 +205,21 @@ body{
 
 <script>
 const closeBtn = document.getElementById('closeBtn');
-let countdown = 60;
+const music = document.getElementById("bg-music");
+let countdown = 3;
+let musicUnlocked = false;
 
 function openTerms(){
   document.getElementById('terms-modal').style.display='flex';
+
+  // start muted music
+  music.muted = true;
+  music.play().catch(()=>{});
+
   closeBtn.disabled = true;
   closeBtn.style.cursor = 'not-allowed';
   closeBtn.textContent = `Close (${countdown}s)`;
-  
+
   const timer = setInterval(() => {
     countdown--;
     closeBtn.textContent = `Close (${countdown}s)`;
@@ -234,6 +241,20 @@ window.onload = openTerms;
 closeBtn.addEventListener('click', () => {
   if(!closeBtn.disabled) closeTerms();
 });
+
+/* unlock sound on FIRST user interaction */
+function unlockMusic(){
+  if(!musicUnlocked){
+    music.muted = false;
+    music.play().catch(()=>{});
+    musicUnlocked = true;
+  }
+  document.removeEventListener("click", unlockMusic);
+  document.removeEventListener("keydown", unlockMusic);
+}
+
+document.addEventListener("click", unlockMusic);
+document.addEventListener("keydown", unlockMusic);
 </script>
 
 <div class="container">
@@ -295,27 +316,67 @@ particlesJS("particles-js",{
   }
 });
 
-function closeNotice(){document.getElementById("terms-modal").style.display="none";}
-function openTelegram(){window.open("https://t.me/IntegrityBox","_blank");}
+/* FORCE all links to open in new tab */
+document.addEventListener("click", e => {
+  const link = e.target.closest("a");
+  if(link && link.href){
+    e.preventDefault();
+    window.open(link.href, "_blank", "noopener");
+  }
+});
+
+function openTelegram(){
+  window.open("https://t.me/IntegrityBox","_blank");
+}
+
+function openLink(u){
+  window.open(u,"_blank");
+}
 
 function downloadPIF(){
-  const a=document.createElement("a");
-  a.href="https://github.com/MeowDump/Integrity-Box/blob/remote/fingerprint/meow.json";
-  a.download="custom.pif.prop";
-  a.click();
+  forceDownload(
+    "https://raw.githubusercontent.com/MeowDump/Integrity-Box/remote/fingerprint/meow.json",
+    "custom.pif.prop"
+  );
 }
 
 function downloadHMA(){
-  const a=document.createElement("a");
-  a.href="https://github.com/MeowDump/Integrity-Box/blob/remote/hidemyapplist/config.json";
-  a.download="HMAL_Config.json";
-  a.click();
+  forceDownload(
+    "https://raw.githubusercontent.com/MeowDump/Integrity-Box/remote/hidemyapplist/config.json",
+    "HMAL_Config.json"
+  );
 }
 
-function openLink(u){window.open(u,"_blank");}
+function forceDownload(url, filename){
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 
-const music=document.getElementById("bg-music");
-function toggleMusic(){music.paused?music.play():music.pause();}
+/* music toggle */
+function toggleMusic(){
+  const music = document.getElementById("bg-music");
+  music.paused ? music.play() : music.pause();
+}
+</script>
+
+<script>
+const music = document.getElementById("bg-music");
+
+function startMusicOnce() {
+  if (music.paused) {
+    music.play().catch(() => {});
+  }
+  document.removeEventListener("click", startMusicOnce);
+  document.removeEventListener("keydown", startMusicOnce);
+}
+
+// start music on first user interaction
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("keydown", startMusicOnce);
 </script>
 
 </body>
