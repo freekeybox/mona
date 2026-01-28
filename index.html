@@ -212,7 +212,7 @@ let musicUnlocked = false;
 function openTerms(){
   document.getElementById('terms-modal').style.display='flex';
 
-  // start muted music
+  // start muted music (allowed)
   music.muted = true;
   music.play().catch(()=>{});
 
@@ -316,7 +316,7 @@ particlesJS("particles-js",{
   }
 });
 
-/* FORCE all links to open in new tab */
+/* FORCE all <a> links to open in new tab */
 document.addEventListener("click", e => {
   const link = e.target.closest("a");
   if(link && link.href){
@@ -334,26 +334,19 @@ function openLink(u){
 }
 
 function downloadPIF(){
-  forceDownload(
-    "https://raw.githubusercontent.com/MeowDump/Integrity-Box/remote/fingerprint/meow.json",
-    "custom.pif.prop"
+  window.open(
+    "https://github.com/MeowDump/Integrity-Box/blob/remote/fingerprint/meow.json",
+    "_blank",
+    "noopener"
   );
 }
 
 function downloadHMA(){
-  forceDownload(
-    "https://raw.githubusercontent.com/MeowDump/Integrity-Box/remote/hidemyapplist/config.json",
-    "HMAL_Config.json"
+  window.open(
+    "https://github.com/MeowDump/Integrity-Box/blob/remote/hidemyapplist/config.json",
+    "_blank",
+    "noopener"
   );
-}
-
-function forceDownload(url, filename){
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
 }
 
 /* music toggle */
